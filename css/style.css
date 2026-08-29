@@ -210,18 +210,53 @@ body {
 
 .category-header {
   text-align: center;
-  padding: 30px 20px 10px;
+  padding: 40px 20px 20px;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.category-header {
+  text-align: center;
+  padding: 40px 20px 30px;
+  margin: 20px auto 35px;
+  max-width: 900px;
+  background: linear-gradient(135deg, rgba(11, 37, 69, 0.03) 0%, rgba(19, 64, 116, 0.08) 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(11, 37, 69, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(11, 37, 69, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+/* شريط جانبي جمالي لإعطاء طابع فخم */
+.category-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 50%;
+  transform: translateX(50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #0b2545, #134074, #8da9c4);
+  border-radius: 0 0 10px 10px;
 }
 
 .category-header h1 {
   color: #0b2545;
-  font-size: 30px;
-  margin-bottom: 8px;
+  font-size: 34px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
 .category-header p {
-  color: #555;
+  color: #4a5568;
   font-size: 16px;
+  font-weight: 500;
+  line-height: 1.7;
+  max-width: 680px;
+  margin: 0 auto;
 }
 
 .products-container {

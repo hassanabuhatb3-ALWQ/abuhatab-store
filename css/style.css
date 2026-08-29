@@ -228,7 +228,6 @@ body {
   overflow: hidden;
 }
 
-/* شريط جانبي جمالي لإعطاء طابع فخم */
 .category-header::before {
   content: '';
   position: absolute;

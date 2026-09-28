@@ -1,6 +1,3 @@
-// ==========================================
-// 1. حاسبة مواد البناء السريعة
-// ==========================================
 const calcType = document.getElementById("calcType");
 const calcVal = document.getElementById("calcVal");
 const calcBtn = document.getElementById("calcBtn");
@@ -19,9 +16,9 @@ function startCalc() {
     }
 
     let price = 0;
-    if (type === "area") price = val * 3;     // 3 دنانير لكل متر عزل
-    if (type === "elec") price = val * 4.5;   // 4.5 دينار لكل نقطة كهرباء
-    if (type === "plumb") price = val * 80;   // 80 دينار تأسيس مواد الحمام
+    if (type === "area") price = val * 3; 
+    if (type === "elec") price = val * 4.5;   
+    if (type === "plumb") price = val * 80;   
 
     resTotal.textContent = price + " د.أ";
     resMsg.textContent = "تم الحساب بنجاح حسب أسعار السوق!";
@@ -33,9 +30,6 @@ if (calcBtn) {
 }
 
 
-// ==========================================
-// 2. حاسبة تكلفة ومدة التوصيل
-// ==========================================
 const deliveryCity = document.getElementById("deliveryCity");
 const checkDeliveryBtn = document.getElementById("checkDeliveryBtn");
 const shippingCost = document.getElementById("shippingCost");
@@ -68,9 +62,6 @@ if (checkDeliveryBtn) {
 }
 
 
-// ==========================================
-// 3. شريط البحث التفاعلي (Search Bar)
-// ==========================================
 const searchForm = document.getElementById("searchForm");
 const searchInput = document.getElementById("searchInput");
 
@@ -84,7 +75,6 @@ if (searchForm) {
             return;
         }
 
-        // توجيه تلقائي بحسب الكلمة المكتوبة
         if (query.includes("صحي") || query.includes("حمام") || query.includes("مواسير")) {
             window.location.href = "sanitary.html";
         } else if (query.includes("كهرباء") || query.includes("سلك") || query.includes("ابريز")) {
@@ -104,32 +94,25 @@ if (searchForm) {
 }
 
 
-// ==========================================
-// 4. نافذة الخصم العشوائية الطائرة
-// ==========================================
 const popup = document.getElementById("randomDiscountPopup");
 const closePopupBtn = document.getElementById("closePopupBtn");
 const popupDiscountBtn = document.getElementById("popupDiscountBtn");
 const popupDiscountResult = document.getElementById("popupDiscountResult");
 
 if (popup) {
-    // إظهار النافذة بعد ثانيتين
     setTimeout(() => {
         popup.style.display = "block";
     }, 2000);
 
-    // إغلاق النافذة
     closePopupBtn.addEventListener("click", () => {
         popup.style.display = "none";
     });
 
-    // توليد الخصم العشوائي
     popupDiscountBtn.addEventListener("click", () => {
         const discount = Math.floor(Math.random() * 20) + 5;
         popupDiscountResult.textContent = "مبروك! حصلت على خصم " + discount + "%";
     });
 
-    // الحركة العشوائية كل 8 ثواني
     setInterval(() => {
         if (popup.style.display !== "none") {
             const randomBottom = Math.floor(Math.random() * 150) + 20;

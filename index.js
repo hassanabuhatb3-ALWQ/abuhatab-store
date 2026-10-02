@@ -123,3 +123,109 @@ if (popup) {
         }
     }, 8000);
 }
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateLoginButtonUI();
+});
+
+function updateLoginButtonUI() {
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  const loginText = document.getElementById('loginText');
+
+  if (isLoggedIn && loginText) {
+    const userName = localStorage.getItem('currentUser') || 'حسابي';
+    loginText.innerText = `تسجيل الخروج (${userName})`;
+  }
+}
+
+function handleAuthAction() {
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+  if (isLoggedIn) {
+    if (confirm('هل ترغب في تسجيل الخروج؟')) {
+      localStorage.setItem('isLoggedIn', 'false');
+      localStorage.removeItem('currentUser');
+      alert('تم تسجيل الخروج بنجاح.');
+      location.reload();
+    }
+  } else {
+    window.location.href = 'login.html';
+  }
+}
+
+function openCartPage() {
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+  if (!isLoggedIn) {
+    alert('عذراً، يجب تسجيل الدخول أولاً للوصول إلى سلة المشتريات!');
+    window.location.href = 'login.html';
+  } else {
+    window.location.href = 'cart.html'; 
+  }
+}
+
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+  
+  const countEl = document.getElementById('cartCount');
+  if (countEl) {
+    countEl.innerText = totalItems;
+  }
+}
+
+function addToCart(name, price) {
+  try {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const numPrice = parseFloat(price) || 0;
+
+    const existingIndex = cart.findIndex(item => item.name === name);
+
+    if (existingIndex > -1) {
+      cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+    } else {
+      cart.push({
+        name: name,
+        price: numPrice,
+        quantity: 1
+      });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    updateCartCount();
+
+    alert('تمت إضافة "' + name + '" إلى السلة بنجاح! 🛒');
+  } catch (err) {
+    console.error('Error adding to cart:', err);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartCount();
+
+  const btns = document.querySelectorAll('.add-to-cart-btn');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      const card = btn.closest('.product-card');
+      if (!card) return;
+
+      const titleEl = card.querySelector('.product-title');
+      const priceEl = card.querySelector('.product-price');
+
+      const title = titleEl ? titleEl.innerText.trim() : 'منتج';
+      const rawPrice = priceEl ? priceEl.innerText.trim() : '0';
+      const price = parseFloat(rawPrice.replace(/[^\d.]/g, '')) || 0;
+
+      addToCart(title, price);
+    });
+  });
+});
+
+
+

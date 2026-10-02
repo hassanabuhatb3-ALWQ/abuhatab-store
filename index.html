@@ -35,7 +35,6 @@
       <p>لمواد البناء</p>
     </div>
 
-    <!-- شريط البحث المفعل -->
    <div class="flex-grow-1 mx-2 my-2" style="max-width: 500px;">
    <form id="searchForm" class="input-group">
     <input type="search" id="searchInput" class="form-control text-end border-0 shadow-none" placeholder="ابحث عن منتج، مادة بناء...">
@@ -53,13 +52,20 @@
       </a>
     </div>
 
-    <button type="button" class="btn btn-outline-warning fw-bold ms-5">
-      <i class="bi bi-person-fill text-white me-2"></i> تسجيل الدخول
-    </button>
+  <div>
+<button type="button" id="loginBtn" onclick="handleAuthAction()" class="btn btn-outline-warning fw-bold ms-5">
+  <i class="bi bi-person-fill text-white me-2"></i>
+  <span id="loginText">تسجيل الدخول</span>
+</button>
 
-    <a href="#" class="btn btn-outline-warning" style="margin-right: 40px;">
-      <i class="bi bi-cart3 fs-5"></i>
-    </a>
+<a href="cart.html" class="floating-cart-btn shadow-lg">
+  <i class="bi bi-cart3 fs-4"></i>
+  <span class="cart-text fw-bold me-1">السلة</span>
+  <span id="cartCount" class="badge rounded-pill bg-danger border border-light fs-6 ms-1">
+    0
+  </span>
+</a>
+
   </div>
 </header>
 
